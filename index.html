@@ -182,5 +182,28 @@
           data-style='{"cartoon":{}}' data-callback='init1YCR'></div>
       </div> -->
     </div>
+    <script>
+    // JavaScript 코드
+    document.addEventListener("DOMContentLoaded", function() {
+      var viewer1 = document.getElementById("viewer1");
+      var dataHref = viewer1.getAttribute("data-href");
+
+      // XMLHttpRequest 객체를 사용하여 pdb 파일 존재 여부 확인
+      var xhr = new XMLHttpRequest();
+      xhr.open("HEAD", dataHref, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            // pdb 파일이 존재하는 경우
+            viewer1.setAttribute("data-href", dataHref);
+          } else {
+            // pdb 파일이 존재하지 않는 경우
+            viewer1.innerHTML = "pdb not found";
+          }
+        }
+      };
+      xhr.send();
+    });
+  </script>
 </body>
 </html>
