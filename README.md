@@ -18,7 +18,5 @@
 Please contact me if there's any suggestion or questions.
 
 
-[Naver](hjee02018@naver.com)
-
-
-[Google](hjee02018@gmail.com)
+Naver : hjee02018@naver.com
+Google : hjee02018@gmail.com
