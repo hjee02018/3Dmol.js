@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>PDBID</th>
+        <th>PROT</th>
+        <th>PEP</th>
+        <th>Len</th>
+        <th>Seq</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comp in entries %}
+        <tr>
+          <td>{{ comp.pdbid }}</td>
+          <td>{{ comp.prot_ch }}</td>
+          <td>{{ comp.pep_ch }}</td>
+          <td>{{ comp.pep_len }}</td>
+          <td>{{ comp.pep_seq }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        columns: [
+          null,
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false}],
+      });
+    });
+  </script>
+{% endblock %}

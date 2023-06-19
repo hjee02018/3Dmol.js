@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>PDB  ID</th>
+        <th>Protain Chain</th>
+        <th>Peptide Chain</th>
+        <th>Peptide Length</th>
+        <th>Peptide Sequence</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        ajax: '/api/data',
+        serverSide: true,
+        columns: [
+          {data: 'pdbid',
+            render: function (data, type, row, meta) {
+              if (type === "display") {
+                  data = '<a href="/complex/'+data+'">' + data + '</a>';
+              }
+              return data;
+            }},
+          {data: 'prot_ch', orderable: false},
+          {data: 'pep_ch', orderable: false},
+          {data: 'pep_len', orderable: false},
+          {data: 'pep_seq', orderable: false},
+          {data: 'desc', orderable: false}
+        ],
+      });
+    });
+  </script>
+{% endblock %}
