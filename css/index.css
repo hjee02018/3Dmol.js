@@ -47,6 +47,16 @@ footer {
     display: block;   
 }
 
+.left-column {
+  float: left;
+  width: 50%;
+}
+
+.right-column {
+  float: right;
+  width: 50%;
+}
+
 	
 #viewercontainer {
     border: 0px;
