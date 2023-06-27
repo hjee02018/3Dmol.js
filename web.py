@@ -10,6 +10,13 @@ def viewer1(pdb_id):
     return render_template('index.html', data_href=pdb_url)
 
 
+@app.route('/pep/<pdb_id>')
+def peptide(pdb_id):
+    pdb_filename = f'{pdb_id.upper()}.pdb'
+    pdb_url = url_for('static', filename='pdbs/' + pdb_filename)
+    return render_template('peptide.html', data_href=pdb_url)
+
+
 @app.route('/')
 def main():
     return render_template('template.html')

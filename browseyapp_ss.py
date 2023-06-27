@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+
+from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -9,9 +10,9 @@ db = SQLAlchemy(app)
 
 class yappann(db.Model):
     __tablename__ = 'yappann'
-    pdbid = db.Column(db.Text, primary_key=True)
-    prot_ch = db.Column(db.Text, primary_key=True)
-    pep_ch = db.Column(db.Text, primary_key=True)
+    pdbid = db.Column(db.Text, primary_key = True)
+    prot_ch = db.Column(db.Text, primary_key = True)
+    pep_ch = db.Column(db.Text, primary_key = True)
     pep_len = db.Column(db.Integer)
     rel_date = db.Column(db.Text)
     pep_seq = db.Column(db.Text)
@@ -27,21 +28,35 @@ class yappann(db.Model):
             'desc': self.desc
         }
 
+db.create_all()
+
+# complex 페이지 추가
+@app.route('/complex/<pdb_path>')
+def complex(pdb_path):
+    # 문자열을 '_' 기준으로 분할
+    parts = pdb_path.split('_')
+
+    # 분할된 요소들을 변수에 할당
+    pdb_url = url_for('static', filename=f'complex/{pdb_path}.pdb')
+    prot_ch = parts[1]
+    pep_ch = parts[2]
+
+    return render_template('complex.html', title='Browse Complex', data_href=pdb_url, prot_ch=prot_ch, pep_ch=pep_ch)
+#    pdb_url = url_for('static', filename=f'complex/{pdb_path}.pdb')
+#    return render_template('complex.html', title='Browse Complex', data_href=pdb_url)
+
 
 @app.route('/')
 def index():
     return render_template('browseyapp_ss.html', title='Browse YAPPCD')
 
-
 @app.route('/cv')
 def index1():
     return render_template('complexview.html', title='Browse YAPPCD')
 
-
 @app.route('/cdn')
 def index2():
     return render_template('cdnexample.html', title='Browse YAPPCD')
-
 
 @app.route('/api/data')
 def data():
@@ -91,7 +106,5 @@ def data():
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     # 외부 접속 허용
     app.run(host='0.0.0.0')
