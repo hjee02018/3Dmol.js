@@ -7,8 +7,12 @@
 ## Sample2
 ![depending](https://github.com/hjee02018/3Dmol.js/assets/78251977/7890f12b-f8b7-4658-acfd-8b41e31b11c1)
 
-## PDB ID list 
-![1](https://github.com/hjee02018/3Dmol.js/assets/78251977/1b4589e3-ce28-4df1-a46f-6a5d5220c484)
+## Sample3
+![chain](https://github.com/hjee02018/3Dmol.js/assets/78251977/8ab68413-9c1e-49a2-9e04-6cb6ee5139ef)
+```html
+        <div id='viewer1' class='viewer_3Dmoljs' data-href='{{ data_href }}' data-backgroundcolor='0xffffff' data-select1='chain:{{prot_ch}}' data-select2='chain:{{pep_ch}}'  data-surface='opacity:.7;color:white' data-style1='{"cartoon":{"color":"spectrum"}}' data-style2='stick' >
+
+```
 
 👀 Reference
 #### 3Dmol.js
